@@ -27,19 +27,19 @@ case "$1" in
       exit 1
     fi
 
-    if [[ "$2" =~ ^[1-9][0-9]*$ ]]; then
-        total_lines=$(wc -l < "$TODO_FILE") # ファイル内の行数を取得
-        if [ "$2" -le "$total_lines" ]; then
-            sed -i "${2}d" "$TODO_FILE"
-            echo "削除しました。"
-        else
-            echo "指定された番号は範囲外です。ファイルには $total_lines 行しかありません。"
-            exit 1
-        fi
-    else
+    if [[ ! "$2" =~ ^[1-9][0-9]*$ ]]; then
         echo "削除する番号は1以上の整数で指定してください。"
         exit 1
     fi
+
+    total_lines=$(wc -l < "$TODO_FILE") # ファイル内の行数を取得
+    if [ "$2" -gt "$total_lines" ]; then
+        echo "指定された番号は範囲外です。ファイルには $total_lines 行しかありません。"
+        exit 1
+    fi
+
+    sed -i "${2}d" "$TODO_FILE"
+    echo "削除しました。"
     ;;
   *)
     echo "使い方: $0 {add タスク内容 | list | del 番号}"

@@ -26,8 +26,13 @@ case "$1" in
       echo "削除する番号を指定してください。"
       exit 1
     fi
-    sed -i "${2}d" "$TODO_FILE"
-    echo "削除しました。"
+    if [[ "$2" =~ ^[1-9][0-9]*$ ]]; then
+        sed -i "${2}d" "$TODO_FILE"
+        echo "削除しました。"
+    else
+        echo "削除する番号は1以上の整数で指定してください。"
+        exit 1
+    fi
     ;;
   *)
     echo "使い方: $0 {add タスク内容 | list | del 番号}"

@@ -15,7 +15,7 @@ case "$1" in
     echo "追加しました。内容:「$*」"
     ;;
   list)
-    if [ -f "$TODO_FILE" ]; then # ファイルの存在有無判定
+    if [ -s "$TODO_FILE" ]; then # ファイルの存在かつサイズが0でないかを判定
       nl -w2 -s'. ' "$TODO_FILE" # 幅2桁で行番号を付けてファイル内容を表示
     else
       echo "TODOはありません。"

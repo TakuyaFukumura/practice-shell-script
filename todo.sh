@@ -36,5 +36,6 @@ case "$1" in
     ;;
   *)
     echo "使い方: $0 {add タスク内容 | list | del 番号}"
+    exit 1
     ;;
 esac

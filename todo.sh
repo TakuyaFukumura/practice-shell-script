@@ -26,9 +26,16 @@ case "$1" in
       echo "削除する番号を指定してください。"
       exit 1
     fi
+
     if [[ "$2" =~ ^[1-9][0-9]*$ ]]; then
-        sed -i "${2}d" "$TODO_FILE"
-        echo "削除しました。"
+        total_lines=$(wc -l < "$TODO_FILE") # ファイル内の行数を取得
+        if [ "$2" -le "$total_lines" ]; then
+            sed -i "${2}d" "$TODO_FILE"
+            echo "削除しました。"
+        else
+            echo "指定された番号は範囲外です。ファイルには $total_lines 行しかありません。"
+            exit 1
+        fi
     else
         echo "削除する番号は1以上の整数で指定してください。"
         exit 1

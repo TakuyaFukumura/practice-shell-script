@@ -6,7 +6,7 @@
 #   ./todo.sh list           # タスク一覧を表示
 #   ./todo.sh del 番号       # 指定番号のタスクを削除
 
-TODO_FILE="storage/todo.txt"
+TODO_FILE="${TODO_FILE:-storage/todo.txt}"
 
 case "$1" in
   add)

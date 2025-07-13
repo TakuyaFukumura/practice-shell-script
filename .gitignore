@@ -1,2 +1,4 @@
 # IntelliJ IDEA の設定ファイル
 .idea/
+storage/*
+!storage/.gitkeep

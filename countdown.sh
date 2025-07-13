@@ -17,9 +17,10 @@ if ! [[ $seconds =~ ^[1-9][0-9]*$ ]]; then
 fi
 
 while [ "$seconds" -gt 0 ]; do
-  echo -ne "$seconds\r"
+  printf "\r%3d " "$seconds"
   sleep 1
   seconds=$((seconds - 1))
 done
 
+printf "\r    \r"
 echo "時間です！"

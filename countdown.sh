@@ -16,7 +16,7 @@ if ! [[ $seconds =~ ^[1-9][0-9]*$ ]]; then
   exit 1
 fi
 
-while [ $seconds -gt 0 ]; do
+while [ "$seconds" -gt 0 ]; do
   echo -ne "$seconds\r"
   sleep 1
   seconds=$((seconds - 1))

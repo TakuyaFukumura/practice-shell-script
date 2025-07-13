@@ -41,7 +41,7 @@ setup() {
 
 @test "delコマンドでゼロ番指定はエラー" {
   echo "タスクA" >> "$TODO_FILE"
-  run bash todo.sh del -1
+  run bash todo.sh del 0
   [ "$status" -eq 1 ]
   [[ "$output" == *"削除する番号は1以上の整数で指定してください。"* ]]
 }

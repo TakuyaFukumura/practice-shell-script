@@ -11,6 +11,11 @@ fi
 
 seconds=$1
 
+if ! [[ $seconds =~ ^[1-9][0-9]*$ ]]; then
+  echo "秒数は1以上の整数で指定してください。"
+  exit 1
+fi
+
 while [ $seconds -gt 0 ]; do
   echo -ne "$seconds\r"
   sleep 1
